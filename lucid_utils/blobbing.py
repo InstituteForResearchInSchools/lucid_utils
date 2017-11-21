@@ -1,11 +1,14 @@
 import numpy as np
-from scipy.spatial.distance import euclidean as dist
 from copy import deepcopy
 try:
 	from Queue import Queue
 except ImportError:
 	from queue import Queue
 
+def distance(point1, point2):
+    # Simple 2D distance function using Pythagoras:
+    # Calculates the distance between point1 (x, y) and point2 (x, y)
+    return np.sqrt(((point2[0] - point1[0])**2) + ((point2[1] - point1[1])**2))
 
 class BlobFinder:
 
@@ -21,7 +24,7 @@ class BlobFinder:
 		sqxs = range(max(0, location[0] - self.irad), min(256, location[0] + self.irad + 1))
 		sqys = range(max(0, location[1] - self.irad), min(256, location[1] + self.irad + 1))
 		square = [(x,y) for x in sqxs for y in sqys]
-		return [p for p in square if (dist(p,location) <= self.rad)]
+		return [p for p in square if (distance(p,location) <= self.rad)]
 
 	def add(self, xy):
 		x,y = xy
