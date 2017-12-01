@@ -6,7 +6,7 @@ def read(fname):
 
 setup(
     name = "lucid_utils",
-    version = "16.11.30",
+    version = "2017120101",
     author = "Cal Hewitt",
     author_email = "hello@calhewitt.xyz",
     description = ("A library for analysing LUCID data"),
