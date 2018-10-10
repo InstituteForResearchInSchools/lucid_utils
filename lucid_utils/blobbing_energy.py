@@ -31,22 +31,20 @@ class BlobFinder:
         close_region = self.circle((x, y))
         for (x1, y1) in close_region:
             if self.frame[x1][y1] > 0:
+                c1 = self.frame[x1][y1]
                 self.frame[x1][y1] = 0
-                self.aq.put((x1, y1, c))
+                self.aq.put((x1, y1, c1))
 
     def find(self):
         for x in range(256):
             for y in range(256):
                 if self.frame[x][y] > 0:
-                    ##added energy value
                     c = self.frame[x][y]
                     self.frame[x][y] = 0
                     self.blob = []
                     self.aq.put((x, y, c))
-                    #print(x,y,c)
                     while not self.aq.empty():
                         pixel = self.aq.get()
-                        #print(pixel)
                         self.add(pixel)
                     self.blobs.append(self.blob)
 
